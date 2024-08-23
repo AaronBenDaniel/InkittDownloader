@@ -115,18 +115,21 @@
                 target="_blank"
                 class="link"
                 data-umami-event="Star">starring the project</a
-              > to support WattpadDownloader.
+              > to support InkittDownloader.
             </p>
-            <p class="text-lg pt-2">
+            <!-- <p class="text-lg pt-2">
               You can also join us on <a
                 href="https://discord.gg/P9RHC4KCwd"
                 target="_blank"
                 class="link"
                 data-umami-event="Discord">discord</a
               >, where we release features early and discuss updates.
-            </p>
+            </p> -->
           </div>
-          <a href="/" class="btn btn-outline btn-lg mt-10">Download More</a>
+          <a
+            :click={() => (window.location.href = window.location.href)}
+            class="btn btn-outline btn-lg mt-10">Download More</a
+          >
         </div>
       {/if}
     </div>
