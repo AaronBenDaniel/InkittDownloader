@@ -41,8 +41,9 @@ async def wp_get_cookies(username: str, password: str) -> dict:
     # Inkitt login credentials are stored at "./inkitt_credentials"
     # The format is "{"email":"{email}","password":"{password}"}"
         file = open("./inkitt_credentials", "r")
-        credentials = loads(file.read())
-        file.close
+        if str(file.read()):
+            credentials = loads(file.read())
+            file.close
     except ValueError:
         print("Incorrect Inkitt login info format")
     except FileNotFoundError:
