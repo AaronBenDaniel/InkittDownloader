@@ -29,11 +29,15 @@
       raw_story_id = story_id;
     }
     raw_story_id = story_id;
+    get_metadata();
   }
-  $: {
+
+  async function get_metadata() {
     if (story_id) {
-      title = "Test Title";
-      author = "Test Author";
+      response = await fetch("https://www.inkitt.com/api/stories/" + story_id);
+      response = await response.json();
+      title = response.title;
+      author = response.username.username;
     } else {
       title = "";
       author = "";
