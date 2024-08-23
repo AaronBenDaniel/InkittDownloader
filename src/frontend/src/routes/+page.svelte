@@ -19,8 +19,9 @@
   $: url = `/download/${story_id}?om=1&username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`;
 
   $: {
+    raw_story_id = raw_story_id.toLowerCase();
     if (raw_story_id.includes("inkitt.com/stories")) {
-      story_id = raw_story_id.split("/stories/")[1].split("/")[1].split("?")[0];
+      story_id = raw_story_id.split("/stories/")[1];
     } else {
       story_id = parseInt(raw_story_id) || ""; // parseInt returns NaN for undefined values.
       raw_story_id = story_id;
