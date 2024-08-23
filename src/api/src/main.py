@@ -14,6 +14,7 @@ from create_book import (
 import tempfile
 from io import BytesIO
 from fastapi.staticfiles import StaticFiles
+from urllib.request import urlopen, Request
 
 app = FastAPI()
 BUILD_PATH = Path(__file__).parent / "build"
