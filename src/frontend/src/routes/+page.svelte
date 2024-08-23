@@ -55,36 +55,40 @@
         <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form class="card-body">
             <div class="form-control">
-              <input
-                type="text"
-                placeholder="Story URL"
-                class="input input-bordered"
-                bind:value={raw_story_id}
-                required
-                name="story_id"
-              />
-              <label class="input input-bordered flex items-center gap-2">
-                Username
+              <span>
                 <input
                   type="text"
-                  class="grow"
-                  name="username"
-                  placeholder="foxtail.chicken"
-                  bind:value={credentials.username}
+                  placeholder="Story URL"
+                  class="input input-bordered"
+                  bind:value={raw_story_id}
                   required
-                />
-              </label>
-              <label class="input input-bordered flex items-center gap-2">
-                Password
-                <input
-                  type="password"
-                  class="grow"
-                  placeholder="supersecretpassword"
-                  name="password"
-                  bind:value={credentials.password}
-                  required
-                />
-              </label>
+                  name="story_id"
+                /></span
+              ><span>
+                <label class="input input-bordered flex items-center gap-2">
+                  Username
+                  <input
+                    type="text"
+                    class="grow"
+                    name="username"
+                    placeholder="foxtail.chicken"
+                    bind:value={credentials.username}
+                    required
+                  />
+                </label></span
+              ><span>
+                <label class="input input-bordered flex items-center gap-2">
+                  Password
+                  <input
+                    type="password"
+                    class="grow"
+                    placeholder="supersecretpassword"
+                    name="password"
+                    bind:value={credentials.password}
+                    required
+                  />
+                </label></span
+              >
             </div>
 
             <div class="form-control mt-6">
