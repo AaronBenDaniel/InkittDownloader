@@ -72,13 +72,12 @@
                 name="story_id"
               />
               <label class="label" for="story_id">
-                  <button
-                    class="label-text link font-semibold"
-                    onclick="StoryIDTutorialModal.showModal()"
-                    data-umami-event="StoryIDTutorialModal Open"
-                    >How to get a Story ID</button
-                  >
-                {/if}
+                <button
+                  class="label-text link font-semibold"
+                  onclick="StoryIDTutorialModal.showModal()"
+                  data-umami-event="StoryIDTutorialModal Open"
+                  >How to get a Story ID</button
+                >
               </label>
               <label class="input input-bordered flex items-center gap-2">
                 Username
