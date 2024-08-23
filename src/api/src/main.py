@@ -87,6 +87,24 @@ async def download_book(
     )
 
 
+@app.get("/get_info/{id}")
+def get_info(id: int):
+    try:
+        req = Request(
+            f"https://www.inkitt.com/api/stories/{id}",
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        response = urlopen(req)
+        response = str(response.read())
+
+        return HTMLResponse(
+            status_code=200,
+            content=response,
+        )
+    except Exception as error:
+        return HTMLResponse(status_code=500, content=str(error))
+
+
 app.mount("/", StaticFiles(directory=BUILD_PATH), "static")
 
 

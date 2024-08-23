@@ -1,4 +1,5 @@
 <script>
+  import { browser } from "$app/environment";
   let story_id = "";
   let credentials = {
     username: "",
@@ -29,20 +30,25 @@
       raw_story_id = story_id;
     }
     raw_story_id = story_id;
-    get_metadata();
+    update_info();
   }
 
-  async function get_metadata() {
-    if (story_id) {
-      response = await fetch("https://www.inkitt.com/api/stories/" + story_id);
-      response = await response.json();
-      title = response.title;
-      author = response.username.username;
-    } else {
-      title = "";
-      author = "";
+  async function update_info() {
+    if (browser && story_id) {
+      let response = await fetch(
+        window.location.href.split("?")[0] + "get_info/" + story_id,
+      );
+      try {
+        let json = await response.json();
+        title = json.title;
+        author = json.user.username;
+      } catch (err) {
+        title = "Unknown Story";
+        author = "Unknown Author";
+      }
     }
   }
+
   function reset() {
     after_download_page = false;
     story_id = "";
