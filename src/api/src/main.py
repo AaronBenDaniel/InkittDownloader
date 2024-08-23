@@ -31,6 +31,7 @@ async def download_book(
     username: Optional[str] = None,
     password: Optional[str] = None,
 ):
+    print("test")
     if username and not password or password and not username:
         return HTMLResponse(
             status_code=422,
