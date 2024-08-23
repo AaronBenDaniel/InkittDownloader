@@ -117,7 +117,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             + str(body["id"])
             + "/chapters/1"
         )
-    print(str(session.get(url).text))
+    print(str(session.get(url)))
     return body
 
 
