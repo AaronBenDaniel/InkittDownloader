@@ -113,12 +113,6 @@
               >
             </div>
           </form>
-
-          <button
-            data-feedback-fish
-            class="link pb-4"
-            data-umami-event="Feedback">Feedback</button
-          >
         </div>
       {:else}
         <div class="text-center max-w-4xl">
@@ -131,7 +125,7 @@
           <div class="py-4 space-y-2">
             <p class="text-2xl">
               If you found this site useful, please consider <a
-                href="https://github.com/TheOnlyWayUp/WattpadDownloader"
+                href="https://github.com/AaronBenDaniel/InkittDownloader"
                 target="_blank"
                 class="link"
                 data-umami-event="Star">starring the project</a
