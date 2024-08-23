@@ -191,7 +191,7 @@ async def add_chapters(
             + "/"
             + str(data["id"])
             + "/chapters/"
-            + str(chapter["chapter_number"]+1)
+            + str(chapter["chapter_number"])
         )
         content = await fetch_part_content(url, cookies=cookies)
         title = chapter["name"]
