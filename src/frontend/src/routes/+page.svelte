@@ -57,20 +57,12 @@
             <div class="form-control">
               <input
                 type="text"
-                placeholder="Story ID"
+                placeholder="Story URL"
                 class="input input-bordered"
                 bind:value={raw_story_id}
                 required
                 name="story_id"
               />
-              <label class="label" for="story_id">
-                <button
-                  class="label-text link font-semibold"
-                  onclick="StoryIDTutorialModal.showModal()"
-                  data-umami-event="StoryIDTutorialModal Open"
-                  >How to get a Story ID</button
-                >
-              </label>
               <label class="input input-bordered flex items-center gap-2">
                 Username
                 <input
@@ -140,38 +132,3 @@
     </div>
   </div>
 </div>
-
-<!-- Open the modal using ID.showModal() method -->
-
-<dialog id="StoryIDTutorialModal" class="modal">
-  <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-        >✕</button
-      >
-    </form>
-    <h3 class="font-bold text-lg">Retrieving a Story ID</h3>
-    <ol class="list list-disc list-inside py-4 space-y-4">
-      <li>
-        Open the Story URL, this page includes the story description and tags.
-        (For example, <span class="font-mono bg-slate-100 p-1"
-          >wattpad.com/story/237369078-wattpad-books-presents</span
-        >).
-      </li>
-      <li>
-        Copy the numbers after the <span class="font-mono bg-slate-100 p-1"
-          >/</span
-        >
-        (In the example, that'd be,
-        <span class="font-mono bg-slate-100 p-1"
-          >wattpad.com/story/<span class="bg-amber-200 p-1">237369078</span
-          >-wattpad-books-presents</span
-        >)
-      </li>
-      <li>Paste the Story ID and hit Download!</li>
-    </ol>
-  </div>
-  <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-</dialog>
