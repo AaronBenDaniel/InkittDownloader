@@ -65,7 +65,6 @@ async def wp_get_cookies(username: str, password: str) -> dict:
             if not cookies:
                 raise ValueError("No cookies.")
 
-            print(cookies)
             return cookies
 
 def slugify(value, allow_unicode=False) -> str:
