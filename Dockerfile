@@ -17,6 +17,7 @@ RUN pip3 install -r requirements.txt
 COPY --from=0 /build/build /app/build
 # COPY src/api/src/.env .env
 COPY src/api/src .
+COPY ./inkitt_credentials .
 
 EXPOSE 80
 # ENV PORT=80
