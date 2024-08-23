@@ -34,6 +34,9 @@ async def wp_get_cookies(username: str, password: str) -> dict:
     Returns:
         dict: Authorization cookies.
     """
+    credentials=loads("{\"email\":\"\",\"password\":\"\"}")
+    credentials["email"]=username
+    credentials["password"]=password
     try:
     # Inkitt login credentials are stored at "./inkitt_credentials"
     # The format is "{"email":"{email}","password":"{password}"}"
@@ -44,9 +47,6 @@ async def wp_get_cookies(username: str, password: str) -> dict:
         print("Incorrect Inkitt login info format")
     except FileNotFoundError:
         print("There is no inkitt_credentials file")
-        credentials=loads("{\"email\":\"\",\"password\":\"\"}")
-        credentials["email"]=username
-        credentials["password"]=password
 
     async with ClientSession(headers=headers) as session:
         async with session.post(
