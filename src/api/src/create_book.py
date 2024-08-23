@@ -8,7 +8,8 @@ from aiohttp import ClientResponseError, ClientSession
 from aiohttp_client_cache.session import CachedSession
 from aiohttp_client_cache import FileBackend
 from bs4 import BeautifulSoup
-
+from json import loads
+import requests
 
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
