@@ -133,6 +133,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
     data = data[data.find("<p data-content") :]
     data = data[: data.find("</div>") - 2]
     print(data)
+    print(cookies)
     return body
 
 
