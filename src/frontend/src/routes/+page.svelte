@@ -52,7 +52,7 @@
       {#if !after_download_page}
         <div class="text-center lg:text-left lg:p-10">
           <h1
-            class="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r to-black-600 via-purple-600 from-blue-700"
+            class="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r to-purple-600 via-black-600 from-blue-700"
           >
             Inkitt Downloader
           </h1>
@@ -118,7 +118,7 @@
         <div class="text-center max-w-4xl">
           <h1 class="font-bold text-3xl">
             Your download has <span
-              class="text-transparent bg-clip-text bg-gradient-to-r to-black-600 via-purple-600 from-blue-700"
+              class="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 via-black-600 from-blue-700"
               >Started</span
             >
           </h1>
