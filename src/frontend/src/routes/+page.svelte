@@ -104,40 +104,28 @@
                   >
                 {/if}
               </label>
-              <label class="cursor-pointer label">
-                <span class="label-text"
-                  >This is a Paid Story, and I've purchased it</span
-                >
+              <label class="input input-bordered flex items-center gap-2">
+                Username
                 <input
-                  type="checkbox"
-                  class="checkbox checkbox-warning shadow-md"
-                  bind:checked={is_paid_story}
+                  type="text"
+                  class="grow"
+                  name="username"
+                  placeholder="foxtail.chicken"
+                  bind:value={credentials.username}
+                  required
                 />
               </label>
-              {#if is_paid_story}
-                <label class="input input-bordered flex items-center gap-2">
-                  Username
-                  <input
-                    type="text"
-                    class="grow"
-                    name="username"
-                    placeholder="foxtail.chicken"
-                    bind:value={credentials.username}
-                    required
-                  />
-                </label>
-                <label class="input input-bordered flex items-center gap-2">
-                  Password
-                  <input
-                    type="password"
-                    class="grow"
-                    placeholder="supersecretpassword"
-                    name="password"
-                    bind:value={credentials.password}
-                    required
-                  />
-                </label>
-              {/if}
+              <label class="input input-bordered flex items-center gap-2">
+                Password
+                <input
+                  type="password"
+                  class="grow"
+                  placeholder="supersecretpassword"
+                  name="password"
+                  bind:value={credentials.password}
+                  required
+                />
+              </label>
             </div>
 
             <div class="form-control mt-6">
