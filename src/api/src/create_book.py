@@ -108,7 +108,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
 
             body = await response.json()
     for item in body:
-        print(item+": "+str(metadata[str(item)]))
+        print(item+": "+str(body[str(item)]))
     return body
 
 
