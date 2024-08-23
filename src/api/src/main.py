@@ -64,7 +64,7 @@ async def download_book(
     async for title in add_chapters(
         book, data, download_images=download_images, cookies=cookies
     ):
-        print(f"Part ({title}) downloaded")
+        # print(f"Part ({title}) downloaded")
         pass
 
     # Book is compiled

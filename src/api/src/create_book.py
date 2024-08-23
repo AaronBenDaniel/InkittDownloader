@@ -34,6 +34,9 @@ async def wp_get_cookies(username: str, password: str) -> dict:
     Returns:
         dict: Authorization cookies.
     """
+    credentials=loads("{\"email\":\"\",\"password\":\"\"}")
+    credentials["email"]=username
+    credentials["password"]=password
     try:
     # Inkitt login credentials are stored at "./inkitt_credentials"
     # The format is "{"email":"{email}","password":"{password}"}"
@@ -44,9 +47,6 @@ async def wp_get_cookies(username: str, password: str) -> dict:
         print("Incorrect Inkitt login info format")
     except FileNotFoundError:
         print("There is no inkitt_credentials file")
-        credentials=loads("{\"email\":\"\",\"password\":\"\"}")
-        credentials["email"]=username
-        credentials["password"]=password
 
     async with ClientSession(headers=headers) as session:
         async with session.post(
@@ -115,7 +115,7 @@ async def fetch_part_content(url: str, cookies: dict = None) -> str:
     """Return the HTML Content of a Part."""
     async with (
         ClientSession(headers=headers, cookies=cookies)
-    ) as session:  # Don't cache requests with Cookies.
+    ) as session:
         async with session.get(
             url
         ) as response:
@@ -127,7 +127,10 @@ async def fetch_part_content(url: str, cookies: dict = None) -> str:
             body = await response.text()
     body = body[body.find("<p data-content") :]
     body = body[: body.find("</div>") - 2]
-    print(body)
+    if body:
+        print(f"Successfully downloaded part: {url}")
+    else:
+        print(f"Failed to download part: {url}")
     return body
 
 
