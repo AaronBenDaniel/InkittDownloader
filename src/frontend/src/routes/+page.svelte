@@ -73,8 +73,10 @@
                 required
                 name="story_id"
               />
-              Title: {title}
-              Author: {author}
+              <h1 style="front-size:18px;">Title:</h1>
+              <h1 style="font-size:18px;color:#FF6122;">{title}</h1>
+              <h1 style="front-size:18px;">Author:</h1>
+              <h1 style="font-size:18px;color:#FF6122;">{author}</h1>
               <label class="input input-bordered flex items-center gap-2">
                 Username
                 <input
