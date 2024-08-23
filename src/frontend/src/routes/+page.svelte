@@ -28,6 +28,12 @@
     }
     raw_story_id = story_id;
   }
+
+  function reset() {
+    after_download_page = false;
+    story_id = "";
+    raw_story_id = "";
+  }
 </script>
 
 <div>
@@ -126,9 +132,8 @@
               >, where we release features early and discuss updates.
             </p> -->
           </div>
-          <a
-            :click={() => (window.location.href = window.location.href)}
-            class="btn btn-outline btn-lg mt-10">Download More</a
+          <a :click={() => reset()} class="btn btn-outline btn-lg mt-10"
+            >Download More</a
           >
         </div>
       {/if}
