@@ -105,7 +105,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             response.raise_for_status()
 
             body = await response.json()
-    print(body)
+    raise Exception(body)
     return body
 
 
