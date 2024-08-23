@@ -16,8 +16,18 @@ headers = {
 
 cache = FileBackend(use_temp=True, expire_after=43200)  # 12 hours
 
-# --- Utilities --- #
+try:
+    # Inkitt login credentials are stored at "./inkitt_credentials"
+    # The format is "{"email":"{email}","password":"{password}"}"
+    file = open("./inkitt_credentials", "r")
+    credentials = loads(file.read())
+    file.close
+except ValueError:
+    print("Incorrect Inkitt login info format")
+except FileNotFoundError:
+    print("There is no inkitt_credentials file")
 
+# --- Utilities --- #
 
 async def wp_get_cookies(username: str, password: str) -> dict:
     # source: https://github.com/TheOnlyWayUp/WP-DM-Export/blob/dd4c7c51cb43f2108e0f63fc10a66cd24a740e4e/src/API/src/main.py#L25-L58
@@ -36,11 +46,7 @@ async def wp_get_cookies(username: str, password: str) -> dict:
     """
     async with ClientSession(headers=headers) as session:
         async with session.post(
-            "https://www.wattpad.com/auth/login?nextUrl=%2F&_data=routes%2Fauth.login",
-            data={
-                "username": username.lower(),
-                "password": password,
-            },  # the username.lower() is for caching
+            "https://www.inkitt.com/api/login", json=credentials
         ) as response:
             if response.status != 204:
                 raise ValueError("Not a 204.")
@@ -91,7 +97,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
         else ClientSession(headers=headers, cookies=cookies)
     ) as session:  # Don't cache requests with Cookies.
         async with session.get(
-            f"https://www.wattpad.com/api/v3/stories/{story_id}?fields=tags,id,title,createDate,modifyDate,language(name),description,completed,mature,url,isPaywalled,user(username),parts(id,title),cover"
+            f"https://www.inkitt.com/api/stories/{story_id}"
         ) as response:
             if not response.ok:
                 if response.status in [404, 400]:
@@ -99,7 +105,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             response.raise_for_status()
 
             body = await response.json()
-
+    print(body)
     return body
 
 
