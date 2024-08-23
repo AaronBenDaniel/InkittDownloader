@@ -1,0 +1,8 @@
+services:
+  inkitt-downloader:
+    image: inkitt_downloader
+    container_name: inkitt-downloader
+    restart: unless-stopped
+    ports:
+      - 5043:80
+
