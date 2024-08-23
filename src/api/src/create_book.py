@@ -107,7 +107,8 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             response.raise_for_status()
 
             body = await response.json()
-    print(body)
+    for item in body:
+        print(item+": "+str(metadata[str(item)]))
     return body
 
 
