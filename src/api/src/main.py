@@ -14,6 +14,7 @@ from create_book import (
 import tempfile
 from io import BytesIO
 from fastapi.staticfiles import StaticFiles
+from urllib.request import urlopen, Request
 
 app = FastAPI()
 BUILD_PATH = Path(__file__).parent / "build"
@@ -85,6 +86,24 @@ async def download_book(
             "Content-Disposition": f'attachment; filename="{slugify(data["title"])}_{story_id}_{"images" if download_images else ""}.epub"'  # Thanks https://stackoverflow.com/a/72729058
         },
     )
+
+
+@app.get("/get_info/{id}")
+def get_info(id: int):
+    try:
+        req = Request(
+            f"https://www.inkitt.com/api/stories/{id}",
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        response = urlopen(req)
+        response = str(response.read())[2:][:-1]
+
+        return HTMLResponse(
+            status_code=200,
+            content=response,
+        )
+    except Exception as error:
+        return HTMLResponse(status_code=500, content=str(error))
 
 
 app.mount("/", StaticFiles(directory=BUILD_PATH), "static")
