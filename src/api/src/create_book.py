@@ -8,7 +8,8 @@ from aiohttp import ClientResponseError, ClientSession
 from aiohttp_client_cache.session import CachedSession
 from aiohttp_client_cache import FileBackend
 from bs4 import BeautifulSoup
-
+from json import loads
+import requests
 
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
@@ -19,9 +20,9 @@ cache = FileBackend(use_temp=True, expire_after=43200)  # 12 hours
 # --- Utilities --- #
 
 
-async def wp_get_cookies(username: str, password: str) -> dict:
+async def wp_get_cookies(email: str, password: str) -> dict:
     # source: https://github.com/TheOnlyWayUp/WP-DM-Export/blob/dd4c7c51cb43f2108e0f63fc10a66cd24a740e4e/src/API/src/main.py#L25-L58
-    """Retrieves authorization cookies from Wattpad by logging in with user creds.
+    """Retrieves authorization cookies from Inkitt by logging in with user creds.
 
     Args:
         username (str): Username.
@@ -34,16 +35,27 @@ async def wp_get_cookies(username: str, password: str) -> dict:
     Returns:
         dict: Authorization cookies.
     """
+    try:
+    # Inkitt login credentials are stored at "./inkitt_credentials"
+    # The format is "{"email":"{email}","password":"{password}"}"
+        file = open("./inkitt_credentials", "r")
+        credentials = loads(file.read())
+        file.close
+    except ValueError:
+        print("Incorrect Inkitt login info format")
+    except FileNotFoundError:
+        print("There is no inkitt_credentials file")
+        credentials=loads("{\"email\":\"\",\"password\":\"\"}")
+        credentials["email"]=email
+        credentials["password"]=password
+
     async with ClientSession(headers=headers) as session:
         async with session.post(
-            "https://www.wattpad.com/auth/login?nextUrl=%2F&_data=routes%2Fauth.login",
-            data={
-                "username": username.lower(),
-                "password": password,
-            },  # the username.lower() is for caching
+            "https://www.inkitt.com/api/login", json=credentials
         ) as response:
-            if response.status != 204:
-                raise ValueError("Not a 204.")
+            if response.status != 200:
+                print(response.status)
+                raise ValueError("Not a 200.")
 
             cookies = {
                 k: v.value
@@ -53,8 +65,8 @@ async def wp_get_cookies(username: str, password: str) -> dict:
             if not cookies:
                 raise ValueError("No cookies.")
 
+            print(cookies)
             return cookies
-
 
 def slugify(value, allow_unicode=False) -> str:
     """

@@ -28,8 +28,8 @@ def home():
 async def download_book(
     story_id: int,
     download_images: bool = False,
-    username: Optional[str] = None,
-    password: Optional[str] = None,
+    username: str = None,
+    password: str = None,
 ):
     if username and not password or password and not username:
         return HTMLResponse(
@@ -37,17 +37,14 @@ async def download_book(
             content='Include both the username <u>and</u> password, or neither. Support is available on the <a href="https://discord.gg/P9RHC4KCwd" target="_blank">Discord</a>',
         )
 
-    if username and password:
-        # username and password are URL-Encoded by the frontend. FastAPI automatically decodes them.
-        try:
-            cookies = await wp_get_cookies(username=username, password=password)
-        except ValueError:
-            return HTMLResponse(
-                status_code=403,
-                content='Incorrect Username and/or Password. Support is available on the <a href="https://discord.gg/P9RHC4KCwd" target="_blank">Discord</a>',
-            )
-    else:
-        cookies = None
+    # username and password are URL-Encoded by the frontend. FastAPI automatically decodes them.
+    try:
+        cookies = await wp_get_cookies(username=username, password=password)
+    except ValueError:
+        return HTMLResponse(
+            status_code=403,
+            content='Incorrect Username and/or Password. Support is available on the <a href="https://discord.gg/P9RHC4KCwd" target="_blank">Discord</a>',
+        )
 
     data = await retrieve_story(story_id, cookies=cookies)
     book = epub.EpubBook()
