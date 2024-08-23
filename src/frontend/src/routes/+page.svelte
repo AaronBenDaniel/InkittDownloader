@@ -18,30 +18,30 @@
 
   $: url = `/download/${story_id}?om=1&username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`;
 
-  $: {
-    if (raw_story_id.includes("wattpad.com")) {
-      // Originally, I was going to call the Wattpad API (wattpad.com/api/v3/stories/${story_id}), but Wattpad kept blocking those requests. I suspect it has something to do with the Origin header, I wasn't able to remove it.
-      // In the future, if this is considered, it would be cool if we could derive the Story ID from a pasted Part URL. Refer to @AaronBenDaniel's https://github.com/AaronBenDaniel/WattpadDownloader/blob/49b29b245188149f2d24c0b1c59e4c7f90f289a9/src/api/src/create_book.py#L156 (https://www.wattpad.com/api/v3/story_parts/{part_id}?fields=url).
+  // $: {
+  //   if (raw_story_id.includes("wattpad.com")) {
+  //     // Originally, I was going to call the Wattpad API (wattpad.com/api/v3/stories/${story_id}), but Wattpad kept blocking those requests. I suspect it has something to do with the Origin header, I wasn't able to remove it.
+  //     // In the future, if this is considered, it would be cool if we could derive the Story ID from a pasted Part URL. Refer to @AaronBenDaniel's https://github.com/AaronBenDaniel/WattpadDownloader/blob/49b29b245188149f2d24c0b1c59e4c7f90f289a9/src/api/src/create_book.py#L156 (https://www.wattpad.com/api/v3/story_parts/{part_id}?fields=url).
 
-      if (raw_story_id.includes("/story/")) {
-        // https://wattpad.com/story/237369078-wattpad-books-presents
-        story_id = raw_story_id.split("/story/")[1].split("-")[0].split("?")[0]; // removes tracking fields
-        raw_story_id = story_id;
-      } else if (raw_story_id.includes("/stories/")) {
-        // https://www.wattpad.com/api/v3/stories/237369078?fields=...
-        story_id = raw_story_id.split("/stories/")[1].split("?")[0]; // removes params
-        raw_story_id = story_id;
-      } else {
-        // https://www.wattpad.com/939051741-wattpad-books-presents-part-name
-        is_part_id = true;
-        raw_story_id = "";
-        story_id = "";
-      }
-    } else {
-      story_id = parseInt(raw_story_id) || ""; // parseInt returns NaN for undefined values.
-      raw_story_id = story_id;
-    }
-  }
+  //     if (raw_story_id.includes("/story/")) {
+  //       // https://wattpad.com/story/237369078-wattpad-books-presents
+  //       story_id = raw_story_id.split("/story/")[1].split("-")[0].split("?")[0]; // removes tracking fields
+  //       raw_story_id = story_id;
+  //     } else if (raw_story_id.includes("/stories/")) {
+  //       // https://www.wattpad.com/api/v3/stories/237369078?fields=...
+  //       story_id = raw_story_id.split("/stories/")[1].split("?")[0]; // removes params
+  //       raw_story_id = story_id;
+  //     } else {
+  //       // https://www.wattpad.com/939051741-wattpad-books-presents-part-name
+  //       is_part_id = true;
+  //       raw_story_id = "";
+  //       story_id = "";
+  //     }
+  //   } else {
+  //     story_id = parseInt(raw_story_id) || ""; // parseInt returns NaN for undefined values.
+  //     raw_story_id = story_id;
+  //   }
+  // }
 </script>
 
 <div>
