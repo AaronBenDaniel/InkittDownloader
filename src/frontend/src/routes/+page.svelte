@@ -40,10 +40,10 @@
       );
       try {
         let json = await response.json();
-        console.log(json);
         title = json.title;
         author = json.user.username;
       } catch (err) {
+        console.log(err);
         title = "Unknown Story";
         author = "Unknown Author";
       }
