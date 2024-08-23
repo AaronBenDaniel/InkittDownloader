@@ -96,7 +96,7 @@ def get_info(id: int):
             headers={"User-Agent": "Mozilla/5.0"},
         )
         response = urlopen(req)
-        response = str(response.read())[2:]
+        response = str(response.read())[2:][:-1]
 
         return HTMLResponse(
             status_code=200,
