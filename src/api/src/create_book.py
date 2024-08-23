@@ -115,7 +115,7 @@ async def fetch_part_content(url: str, cookies: dict = None) -> str:
     """Return the HTML Content of a Part."""
     async with (
         ClientSession(headers=headers, cookies=cookies)
-    ) as session:  # Don't cache requests with Cookies.
+    ) as session:
         async with session.get(
             url
         ) as response:
@@ -191,7 +191,7 @@ async def add_chapters(
             + "/"
             + str(data["id"])
             + "/chapters/"
-            + str(chapter["chapter_number"])
+            + str(chapter["chapter_number"]+1)
         )
         content = await fetch_part_content(url, cookies=cookies)
         title = chapter["name"]
