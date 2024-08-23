@@ -51,6 +51,7 @@ async def download_book(
 
     try:
         set_metadata(book, data)
+        print("Success!")
     except KeyError:
         return HTMLResponse(
             status_code=404,
