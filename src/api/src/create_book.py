@@ -20,7 +20,7 @@ cache = FileBackend(use_temp=True, expire_after=43200)  # 12 hours
 # --- Utilities --- #
 
 
-async def wp_get_cookies(email: str, password: str) -> dict:
+async def wp_get_cookies(username: str, password: str) -> dict:
     # source: https://github.com/TheOnlyWayUp/WP-DM-Export/blob/dd4c7c51cb43f2108e0f63fc10a66cd24a740e4e/src/API/src/main.py#L25-L58
     """Retrieves authorization cookies from Inkitt by logging in with user creds.
 
@@ -46,7 +46,7 @@ async def wp_get_cookies(email: str, password: str) -> dict:
     except FileNotFoundError:
         print("There is no inkitt_credentials file")
         credentials=loads("{\"email\":\"\",\"password\":\"\"}")
-        credentials["email"]=email
+        credentials["email"]=username
         credentials["password"]=password
 
     async with ClientSession(headers=headers) as session:
