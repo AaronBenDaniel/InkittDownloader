@@ -52,7 +52,7 @@
       {#if !after_download_page}
         <div class="text-center lg:text-left lg:p-10">
           <h1
-            class="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r to-pink-600 via-yellow-600 from-red-700"
+            class="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r to-blue-600 via-black-600 from-purple-700"
           >
             Inkitt Downloader
           </h1>
