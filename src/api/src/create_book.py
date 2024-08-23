@@ -116,15 +116,20 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             + str(body["id"])
             + "/chapters/1"
         )
-    async with session.get(
-        url
-    ) as response:
-        if not response.ok:
-            if response.status in [404, 400]:
-                return {}
-        response.raise_for_status()
+    async with (
+        CachedSession(headers=headers, cache=cache)
+        if not cookies
+        else ClientSession(headers=headers, cookies=cookies)
+    ) as session:  # Don't cache requests with Cookies.
+        async with session.get(
+            url
+        ) as response:
+            if not response.ok:
+                if response.status in [404, 400]:
+                    return {}
+            response.raise_for_status()
 
-        test = await response.text()
+            test = await response.text()
     print(test)
     return body
 
