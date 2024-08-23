@@ -67,22 +67,11 @@
                 type="text"
                 placeholder="Story ID"
                 class="input input-bordered"
-                class:input-warning={is_part_id}
                 bind:value={raw_story_id}
                 required
                 name="story_id"
               />
               <label class="label" for="story_id">
-                {#if is_part_id}
-                  <p class=" text-red-500">
-                    Refer to (<button
-                      class="link font-semibold"
-                      onclick="StoryIDTutorialModal.showModal()"
-                      data-umami-event="Part StoryIDTutorialModal Open"
-                      >How to get a Story ID</button
-                    >).
-                  </p>
-                {:else}
                   <button
                     class="label-text link font-semibold"
                     onclick="StoryIDTutorialModal.showModal()"
