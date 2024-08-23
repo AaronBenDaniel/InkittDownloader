@@ -132,7 +132,7 @@
               >, where we release features early and discuss updates.
             </p> -->
           </div>
-          <a :click={() => reset()} class="btn btn-outline btn-lg mt-10"
+          <a on:click={() => reset()} class="btn btn-outline btn-lg mt-10"
             >Download More</a
           >
         </div>
