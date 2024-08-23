@@ -114,7 +114,7 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             + str(body["category_one"])
             + "/"
             + str(body["id"])
-            + "/chapters/1"
+            + "/chapters/6"
         )
     async with (
         CachedSession(headers=headers, cache=cache)
