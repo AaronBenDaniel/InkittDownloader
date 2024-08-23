@@ -5,7 +5,6 @@ import unicodedata
 import re
 import backoff
 from aiohttp import ClientResponseError, ClientSession
-from aiohttp_client_cache.session import CachedSession
 from aiohttp_client_cache import FileBackend
 from bs4 import BeautifulSoup
 from json import loads
@@ -94,15 +93,13 @@ def slugify(value, allow_unicode=False) -> str:
 
 
 @backoff.on_exception(backoff.expo, ClientResponseError, max_time=15)
-async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
-    """Taking a story_id, return its information from the Wattpad API."""
+async def retrieve_story(story_id: int, cookies: dict = None) -> dict:
+    """Taking a story_id, return its information from the Inkitt API."""
     async with (
-        CachedSession(headers=headers, cache=cache)
-        if not cookies
-        else ClientSession(headers=headers, cookies=cookies)
-    ) as session:  # Don't cache requests with Cookies.
+        ClientSession(headers=headers, cookies=cookies)
+    ) as session:
         async with session.get(
-            f"https://www.wattpad.com/api/v3/stories/{story_id}?fields=tags,id,title,createDate,modifyDate,language(name),description,completed,mature,url,isPaywalled,user(username),parts(id,title),cover"
+            f"https://www.inkitt.com/api/stories/{story_id}"
         ) as response:
             if not response.ok:
                 if response.status in [404, 400]:
@@ -110,6 +107,9 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             response.raise_for_status()
 
             body = await response.json()
+
+    for item in body:
+        print(item+": "+str(body[str(item)]))
 
     return body
 
