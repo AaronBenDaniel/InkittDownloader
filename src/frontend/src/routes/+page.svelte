@@ -6,6 +6,8 @@
   };
   let after_download_page = false;
   let url = "";
+  let title = "";
+  let author = "";
 
   let raw_story_id = "";
 
@@ -28,7 +30,15 @@
     }
     raw_story_id = story_id;
   }
-
+  $: {
+    if (story_id) {
+      title = "Test Title";
+      author = "Test Author";
+    } else {
+      title = "";
+      author = "";
+    }
+  }
   function reset() {
     after_download_page = false;
     story_id = "";
@@ -63,6 +73,8 @@
                 required
                 name="story_id"
               />
+              Title: {title}
+              Author: {author}
               <label class="input input-bordered flex items-center gap-2">
                 Username
                 <input
