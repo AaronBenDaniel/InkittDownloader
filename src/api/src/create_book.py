@@ -102,7 +102,6 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
         ) as response:
             if not response.ok:
                 if response.status in [404, 400]:
-                    print("Here")
                     return {}
             response.raise_for_status()
 
@@ -117,7 +116,16 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             + str(body["id"])
             + "/chapters/1"
         )
-    print(str(session.get(url)))
+    async with session.get(
+        url
+    ) as response:
+        if not response.ok:
+            if response.status in [404, 400]:
+                return {}
+        response.raise_for_status()
+
+        test = await response.text()
+    print(test)
     return body
 
 
