@@ -109,6 +109,15 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
             body = await response.json()
     for item in body:
         print(item+": "+str(body[str(item)]))
+    print("")
+    url = (
+            "https://inkitt.com/stories/"
+            + str(body["category_one"])
+            + "/"
+            + str(body["id"])
+            + "/chapters/1"
+        )
+    print(str(session.get(url).text))
     return body
 
 
