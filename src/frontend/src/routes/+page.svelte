@@ -21,11 +21,12 @@
   $: {
     raw_story_id = raw_story_id.toLowerCase();
     if (raw_story_id.includes("inkitt.com/stories")) {
-      story_id = raw_story_id.split("/stories/")[1];
+      story_id = raw_story_id.split("/stories/")[1].split("/")[1].split("?")[0];
     } else {
       story_id = parseInt(raw_story_id) || ""; // parseInt returns NaN for undefined values.
       raw_story_id = story_id;
     }
+    raw_story_id = story_id;
   }
 </script>
 
