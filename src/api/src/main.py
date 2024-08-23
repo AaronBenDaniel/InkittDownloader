@@ -60,8 +60,6 @@ async def download_book(
     await set_cover(book, data, cookies=cookies)
     # print("Metadata Downloaded")
 
-    print("\nSuccess!\n")
-
     # Chapters are downloaded
     async for title in add_chapters(
         book, data, download_images=download_images, cookies=cookies
