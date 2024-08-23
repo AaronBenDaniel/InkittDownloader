@@ -1,7 +1,5 @@
 <script>
   let story_id = "";
-  let download_images = false;
-  let is_paid_story = false;
   let credentials = {
     username: "",
     password: "",
@@ -10,20 +8,17 @@
   let url = "";
 
   let raw_story_id = "";
-  let is_part_id = false;
 
   let button_disabled = false;
-  $: button_disabled =
-    !story_id ||
-    (is_paid_story && !(credentials.username && credentials.password));
+  $: button_disabled = !(
+    story_id &&
+    credentials.username &&
+    credentials.password
+  );
 
-  $: url =
-    `/download/${story_id}?om=1` +
-    (download_images ? "&download_images=true" : "") +
-    `&username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`;
+  $: url = `/download/${story_id}?om=1&username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`;
 
   $: {
-    is_part_id = false;
     if (raw_story_id.includes("wattpad.com")) {
       // Originally, I was going to call the Wattpad API (wattpad.com/api/v3/stories/${story_id}), but Wattpad kept blocking those requests. I suspect it has something to do with the Origin header, I wasn't able to remove it.
       // In the future, if this is considered, it would be cool if we could derive the Story ID from a pasted Part URL. Refer to @AaronBenDaniel's https://github.com/AaronBenDaniel/WattpadDownloader/blob/49b29b245188149f2d24c0b1c59e4c7f90f289a9/src/api/src/create_book.py#L156 (https://www.wattpad.com/api/v3/story_parts/{part_id}?fields=url).
@@ -59,17 +54,11 @@
           <h1
             class="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r to-pink-600 via-yellow-600 from-red-700"
           >
-            Wattpad Downloader
+            Inkitt Downloader
           </h1>
           <p class="pt-6 text-lg">
             Download your favourite books with a single click!
           </p>
-          <ul class="pt-4 list list-inside text-xl">
-            <!-- TODO: 'max-lg: hidden' to hide on screen sizes smaller than lg. I'll do this when I figure out how to make this show up _below_ the card on smaller screen sizes. -->
-            <li>07/24 - 🔡 RTL Language support! (Arabic, etc.)</li>
-            <li>06/24 - 🔑 Authenticated Downloads!</li>
-            <li>06/24 - 🖼️ Image Downloading!</li>
-          </ul>
         </div>
         <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form class="card-body">
@@ -134,17 +123,6 @@
                 href={url}
                 on:click={() => (after_download_page = true)}>Download</a
               >
-
-              <label class="cursor-pointer label">
-                <span class="label-text"
-                  >Include Images (<strong>Slower Download</strong>)</span
-                >
-                <input
-                  type="checkbox"
-                  class="checkbox checkbox-warning shadow-md"
-                  bind:checked={download_images}
-                />
-              </label>
             </div>
           </form>
 
