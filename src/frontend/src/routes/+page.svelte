@@ -54,6 +54,8 @@
     after_download_page = false;
     story_id = "";
     raw_story_id = "";
+    title = "";
+    author = "";
   }
 </script>
 
