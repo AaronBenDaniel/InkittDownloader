@@ -4,3 +4,5 @@ venv
 data
 *ipynb
 build
+macro
+inkitt_credentials
