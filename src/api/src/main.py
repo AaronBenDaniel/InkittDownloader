@@ -37,7 +37,7 @@ async def download_book(
             content='Include both the username <u>and</u> password, or neither. Support is available on the <a href="https://discord.gg/P9RHC4KCwd" target="_blank">Discord</a>',
         )
 
-    if username and password:
+    if True:
         # username and password are URL-Encoded by the frontend. FastAPI automatically decodes them.
         try:
             cookies = await wp_get_cookies(username=username, password=password)
