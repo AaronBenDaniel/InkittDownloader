@@ -173,7 +173,7 @@ def set_metadata(book, data):
 
 
 async def set_cover(book, data, cookies: Optional[dict] = None):
-    book.set_cover("cover.jpg", await fetch_cover(data["cover"], cookies=cookies))
+    book.set_cover("cover.jpg", await fetch_cover(data["vertical_cover"]["url"], cookies=cookies))
 
 
 async def add_chapters(

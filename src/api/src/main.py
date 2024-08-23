@@ -51,7 +51,6 @@ async def download_book(
 
     try:
         set_metadata(book, data)
-        print("Success!")
     except KeyError:
         return HTMLResponse(
             status_code=404,
@@ -60,6 +59,8 @@ async def download_book(
 
     await set_cover(book, data, cookies=cookies)
     # print("Metadata Downloaded")
+
+    print("\nSuccess!\n")
 
     # Chapters are downloaded
     async for title in add_chapters(
