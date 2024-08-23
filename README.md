@@ -15,5 +15,3 @@ Inkitt Downloader
 
 This program is based on [TheOnlyWayUp's](https://github.com/TheOnlyWayUp) [Wattpad Downloader](https://github.com/TheOnlyWayUp/WattpadDownloader).
 By based I mean it's just a copy but I made it download from Inkitt instead of Wattpad
-
-*As you may be able to tell, the frontend has not been reskinned yet*
