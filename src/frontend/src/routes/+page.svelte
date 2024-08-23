@@ -20,9 +20,7 @@
   $: url =
     `/download/${story_id}?om=1` +
     (download_images ? "&download_images=true" : "") +
-    (is_paid_story
-      ? `&username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`
-      : "");
+    `&username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`;
 
   $: {
     is_part_id = false;
