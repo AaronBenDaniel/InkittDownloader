@@ -127,7 +127,10 @@ async def fetch_part_content(url: str, cookies: dict = None) -> str:
             body = await response.text()
     body = body[body.find("<p data-content") :]
     body = body[: body.find("</div>") - 2]
-    print(body)
+    if body:
+        print(f"Successfully downloaded part: {url}")
+    else:
+        print(f"Failed to download part: {url}")
     return body
 
 
