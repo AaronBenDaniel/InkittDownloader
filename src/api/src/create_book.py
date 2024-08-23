@@ -129,8 +129,10 @@ async def retrieve_story(story_id: int, cookies: Optional[dict] = None) -> dict:
                     return {}
             response.raise_for_status()
 
-            test = await response.text()
-    print(test)
+            data = await response.text()
+    data = data[data.find("<p data-content") :]
+    data = data[: data.find("</div>") - 2]
+    print(data)
     return body
 
 
