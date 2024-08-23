@@ -161,9 +161,9 @@ def set_metadata(book, data):
     #book.add_metadata("DC", "modified", data["modifyDate"])
     book.add_metadata("DC", "language", data["language"]["locale"])
 
-    book.add_metadata(
-        None, "meta", "", {"name": "tags", "content": ", ".join(data["content_labels"])}
-    )
+    # book.add_metadata(
+    #     None, "meta", "", {"name": "tags", "content": ", ".join(data["content_labels"])}
+    # )
     # book.add_metadata(
     #     None, "meta", "", {"name": "mature", "content": str(int(data["mature"]))}
     # )
