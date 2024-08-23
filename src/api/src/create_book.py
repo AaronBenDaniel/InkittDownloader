@@ -49,9 +49,9 @@ async def wp_get_cookies(username: str, password: str) -> dict:
         async with session.post(
             "https://www.inkitt.com/api/login", json=credentials
         ) as response:
-            if response.status != 204:
+            if response.status != 200:
                 print(response.status)
-                raise ValueError("Not a 204.")
+                raise ValueError("Not a 200.")
 
             cookies = {
                 k: v.value
