@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "You might need to run me as root depending on how Docker is configured"
+echo -e "\033[1;31mYou might need to run me as root depending on how Docker is configured"
 git checkout main
 git pull
 docker build . -t inkitt_downloader
