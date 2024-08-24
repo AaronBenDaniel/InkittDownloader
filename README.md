@@ -1,15 +1,25 @@
 Inkitt Downloader
 ---
 
-# THIS PROGRAM IS NOT COMPLETE
-## IT IS VERY BUGGY RIGHT NOW
-### Don't report any bugs yet, I know there are a lot
+# Not all stories download properly...
+###  for some reason
+If anyone can figure out why that'd be helpful
+
+---
+
+![](/pics/screenshot.webp)
+
+This is a docker container that hosts a webserver on `http://{ip}:5043`. Input an Inkitt story URL or story ID, input your Inkitt login credentials, and click "Download". After waiting for the program to download and compile the book (it can take a minute or so) the user will be prompted to download a .epub file of the book.
+
+### This is a piece of server software that hosts a webpage accessible to all devices that can access port `5043` of the host machine.
 
 ## Set Up
 
-1. Clone the repository: `git clone https://github.com/AaronBenDaniel/InkittDownloader && cd InkittDownloader`
-2. Build the image: `docker build . -t 'inkitt_downloader'`
-3. Run the Container: `docker run -d -p 5043:80 inkitt_downloader`
+This program requires Docker: https://docs.docker.com/engine/install/
+
+1. Clone the repository: `git clone https://github.com/AaronBenDaniel/InkittDownloader`
+2. CD into the repo: `cd InkittDownloader`
+3. Run `setup.sh`: `./setup.sh`
 
 ### You MUST input login credentials, Inkitt requires them
 

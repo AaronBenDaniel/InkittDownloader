@@ -1,8 +1,7 @@
 #!/bin/bash
 
-git pull
+echo "You might need to run me as root depending on how Docker is configured"
 git checkout main
 git pull
-sudo docker build . -t inkitt_downloader
-sudo docker compose up -d
-
+docker build . -t inkitt_downloader
+docker run -d -p 5043:80 --restart=unless-stopped inkitt_downloader
