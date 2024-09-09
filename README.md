@@ -1,6 +1,8 @@
 Inkitt Downloader
 ---
 
+# Broken right now because Inkitt cracked down on scraping
+
 # Not all stories download properly...
 ###  for some reason
 If anyone can figure out why that'd be helpful
